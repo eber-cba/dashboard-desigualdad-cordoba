@@ -1,16 +1,57 @@
-# React + Vite
+# 🏙️ Urban Data Science | Interactive Dashboard V19 🇦🇷
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)
 
-Currently, two official plugins are available:
+**Plataforma interactiva geoespacial desarrollada para la visualización de métricas de desigualdad social e infraestructura en los 495 barrios de la ciudad de Córdoba Capital.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎯 ¿Qué es este Dashboard?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este repositorio contiene la capa de presentación (Front-End) de un extenso proyecto de **Ciencia de Datos y Análisis Espacial**. 
 
-## Expanding the ESLint configuration
+El objetivo de este visualizador interactivo es permitir a cualquier usuario (académico, político o ciudadano) explorar de forma simple y visual *dónde* se concentran las vulnerabilidades de la ciudad (Ej: Pobreza) y contrastar directamente en el mapa si la infraestructura pública (Escuelas, Centros de Salud, Transporte) está llegando realmente a esos sectores.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✨ Funcionalidades Principales
+* **Mapa Geográfico Interactivo:** Renderizado por Leaflet con tiles oscuros para fácil contraste térmico.
+* **Control de Variables (Sidebar):** Cambia dinámicamente el mapa para visualizar la huella de 8 métricas distintas (Densidad poblacional, Escuelas, Paradas de Colectivos, NBI, etc).
+* **Tour Guiado (Onboarding):** Incluye una explicación guiada paso a paso (`react-joyride`) para enseñar al usuario cómo interpretar la correlación de datos espaciales.
+
+---
+
+## 🧠 Origen de los Datos (El verdadero "Core") 
+
+> [!IMPORTANT]
+> **Este repositorio NO contiene los algoritmos de Machine Learning ni la ingeniería de datos base.**
+
+Este dashboard es **únicamente un visualizador React**. Toda la limpieza masiva de datos censales, el análisis espacial con KD-Trees, la algoritmia de imputación logística y el Clustering (`K-Means` y `DBSCAN`) que produce el archivo *dataset_dashboard_v19.csv* utilizado aquí, **reside en un repositorio de Python separado.**
+
+👉 **[Ver el Repositorio de Ciencias de Datos (Python/MLOps) aquí](https://github.com/eber-cba/dataset-desigualdad-cordoba)**.
+
+Allí encontrarás la arquitectura matemática que justifica las métricas mostradas en este mapa.
+
+---
+
+## 🚀 Instalación Local
+
+Si deseas correr este proyecto en tu propia máquina:
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/eber-cba/dashboard-desigualdad-cordoba.git
+   ```
+2. Instala las dependencias de Node:
+   ```bash
+   npm install
+   ```
+3. Levanta el servidor de desarrollo Vite:
+   ```bash
+   npm run dev
+   ```
+4. Abre `http://localhost:5173` en tu navegador.
+
+---
+**© Creado por [Eber Coronel](https://github.com/eber-cba) | Principal Urban Data Scientist & Fullstack Dev**
