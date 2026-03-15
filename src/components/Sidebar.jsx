@@ -19,7 +19,7 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
           </div>
         </div>
 
-        <p className="text-xs text-slate-400 mb-5 leading-relaxed hidden md:block">
+        <p className="text-sm text-slate-300 mb-5 leading-relaxed hidden md:block">
           Plataforma de <strong>Urban Data Science V19</strong>. Selecciona una métrica territorial para visualizar su huella geoespacial en la ciudad.
         </p>
 
@@ -35,8 +35,8 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
           </p>
         </div>
 
-        <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 flex items-center gap-2">
-          <Zap className="w-3 h-3 text-amber-400" />
+        <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-slate-300 mb-3 flex items-center gap-2">
+          <Zap className="w-4 h-4 text-amber-400" />
           Métricas Geoespaciales
         </h2>
         
@@ -70,16 +70,29 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
       </div>
 
       {/* FOOTER PROFILE - Responsive */}
-      <div className="mt-auto hidden xl:block pt-5 border-t border-slate-700/50">
-        <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3">Ingeniería & Datos</h3>
-        <div className="bg-slate-950/40 rounded-2xl p-4 ring-1 ring-white/10 hover:ring-sky-500/30 transition-all duration-300 group">
-          <p className="text-white font-bold tracking-wide group-hover:text-sky-400 transition-colors">Eber Coronel</p>
-          <p className="text-[11px] text-slate-400 mb-3 font-medium">Principal Urban Data Scientist</p>
+      <div className="mt-auto hidden xl:block pt-5 border-t border-slate-700/50 text-center">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-2">Ingeniería & Datos</h3>
+        <div className="bg-slate-950/60 rounded-2xl p-4 ring-1 ring-sky-500/20 hover:ring-sky-500/50 transition-all duration-300 group">
+          <p className="text-sky-300 font-extrabold tracking-wide text-lg group-hover:text-sky-400 transition-colors">Eber Coronel</p>
+          <p className="text-xs text-slate-300 mb-3 font-medium">Principal Urban Data Scientist</p>
+          
+          <div className="flex gap-2 justify-center mb-3">
+            <a href="https://linkedin.com/in/ebercoronel" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-sky-400 transition-colors">
+              <span className="text-xs font-bold bg-slate-800 px-2 py-1 rounded">LinkedIn</span>
+            </a>
+            <a href="https://github.com/eber-cba" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <span className="text-xs font-bold bg-slate-800 px-2 py-1 rounded">GitHub</span>
+            </a>
+          </div>
+
           <a href="https://github.com/eber-cba/dataset-desigualdad-cordoba" target="_blank" rel="noreferrer"
-             className="block py-2 w-full bg-slate-900/80 hover:bg-slate-700 transition-colors text-center rounded-xl text-[11px] text-slate-300 font-bold tracking-widest uppercase ring-1 ring-white/5 hover:text-white">
-            Ver Entorno V19 (Git)
+             className="block py-2 w-full bg-slate-900 shadow-md hover:bg-sky-600 transition-colors text-center rounded-xl text-xs text-white font-bold tracking-widest uppercase ring-1 ring-white/10 hover:ring-sky-400">
+            Ver Repo V19
           </a>
         </div>
+        <p className="text-[10px] text-slate-500 mt-3 font-medium tracking-wide">
+          © {new Date().getFullYear()} Creado por Eber Coronel.<br/>All rights reserved.
+        </p>
       </div>
 
     </div>
