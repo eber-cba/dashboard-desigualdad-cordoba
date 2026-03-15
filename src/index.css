@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+}
 
 html, body, #root {
   height: 100%;
@@ -23,3 +27,33 @@ html, body, #root {
 .leaflet-popup-content {
   margin: 12px 16px;
 }
+
+/* Custom Scrollbar Premium Oscuro */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9; /* Neon touch al hacer hover en el scroll */
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+
+/* Utilidad para esconder scrollbar completamente pero permitir scroll */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
