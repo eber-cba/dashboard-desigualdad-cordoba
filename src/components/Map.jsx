@@ -11,12 +11,8 @@ const MapUpdater = () => {
   return null;
 };
 
-// Paleta de colores calor de amarillo a morado neón para heatmap (NBI)
-const getColor = (value, max) => {
-  // Para que no de NaN
-  if (!max || max === 0) return '#0ea5e9'; // cyan normal
-  const perc = value / max;
-  // de cyan -> púrpura -> rosa neon -> rojo intenso
+// Paleta de colores calor de azul a morado neón para heatmap (0 -> 1)
+const getColor = (perc) => {
   if (perc > 0.8) return '#e11d48'; // rose-600
   if (perc > 0.6) return '#c026d3'; // fuchsia-600
   if (perc > 0.4) return '#9333ea'; // purple-600
@@ -27,10 +23,19 @@ const getColor = (value, max) => {
 export default function Map({ data, activeVariable }) {
   // Config: Coordenadas de Córdoba Centro
   const center = [-31.4135, -64.1810];
-  const maxVal = Math.max(...data.map(d => d[activeVariable.key] || 0));
+  
+  // Encontrar Mínimos y Máximos dinámicos excluyendo nulos u outliers extremos
+  const values = data.map(d => Number(d[activeVariable.key]) || 0);
+  const minVal = Math.min(...values);
+  const maxVal = Math.max(...values);
+
+  const getPercent = (val) => {
+    if (maxVal === minVal) return 0.5;
+    return (val - minVal) / (maxVal - minVal);
+  };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full tour-step-5-map">
       <MapContainer 
         center={center} 
         zoom={12} 
@@ -41,41 +46,32 @@ export default function Map({ data, activeVariable }) {
         {/* TileLayer Modo Oscuro (CartoDB Dark Matter) */}
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
         />
 
         {data.map((barrio, i) => {
-          const val = barrio[activeVariable.key] || 0;
+          const val = Number(barrio[activeVariable.key]) || 0;
+          const perc = getPercent(val);
+          const color = getColor(perc);
+          
           return (
             <CircleMarker
               key={i}
               center={[barrio.lat, barrio.lon]}
-              radius={val === 0 ? 0 : 5 + (val / maxVal) * 15}
-              fillColor={getColor(val, maxVal)}
-              color={getColor(val, maxVal)}
+              radius={val === 0 ? 3 : 5 + perc * 18}
+              fillColor={color}
+              color={color}
               weight={1}
-              opacity={0.8}
-              fillOpacity={0.6}
+              opacity={0.9}
+              fillOpacity={0.7}
+              className="transition-all duration-300 pointer-events-auto"
             >
-              <Popup>
-                <div className="font-sans text-sm p-1">
-                  <h3 className="font-bold text-lg mb-1">{barrio.barrio}</h3>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-slate-300">
-                    <span className="font-semibold text-slate-400">Población:</span>
-                    <span className="text-right">{barrio.poblacion}</span>
-                    <span className="font-semibold text-rose-400">% NBI:</span>
-                    <span className="text-right text-rose-400 font-bold">{barrio.pct_nbi}%</span>
-                    <hr className="col-span-2 border-slate-700 my-1" />
-                    <span className="font-semibold text-slate-400">Escuelas (Tot):</span>
-                    <span className="text-right text-sky-400 font-semibold">{barrio.escuelas_total}</span>
-                    <span className="font-semibold text-slate-400">Paradas Transp:</span>
-                    <span className="text-right text-sky-400 font-semibold">{barrio.paradas_colectivo}</span>
-                    <span className="font-semibold text-slate-400">Luces LED:</span>
-                    <span className="text-right">{barrio.luminarias_reportes}</span>
-                    <span className="font-semibold text-slate-400">Centros Vecinales:</span>
-                    <span className="text-right">{barrio.centros_vecinales}</span>
-                  </div>
-                </div>
+              <Popup className="custom-popup">
+                {/* Renderizar directamente el tooltip_html generado por Urban Data Science V19 en Python */}
+                <div 
+                  className="font-sans text-sm p-2 text-slate-800"
+                  dangerouslySetInnerHTML={{ __html: barrio.tooltip_html || `<b>${barrio.barrio}</b>` }}
+                />
               </Popup>
             </CircleMarker>
           );
@@ -84,3 +80,4 @@ export default function Map({ data, activeVariable }) {
     </div>
   );
 }
+

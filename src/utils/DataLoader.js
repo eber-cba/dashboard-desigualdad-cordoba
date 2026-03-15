@@ -2,36 +2,23 @@ import Papa from 'papaparse';
 
 export const loadData = async () => {
   try {
-    const [datasetRes, centroidsRes] = await Promise.all([
-      fetch('/dataset_final_v6.csv'),
-      fetch('/centroides_barrios_completo.csv')
-    ]);
-    
-    const datasetText = await datasetRes.text();
-    const centroidsText = await centroidsRes.text();
+    const response = await fetch('/dataset_dashboard_v19.csv');
+    const text = await response.text();
 
-    const dataset = Papa.parse(datasetText, { header: true, dynamicTyping: true, skipEmptyLines: true }).data;
-    const centroids = Papa.parse(centroidsText, { header: true, dynamicTyping: true, skipEmptyLines: true }).data;
+    const dataset = Papa.parse(text, { 
+      header: true, 
+      dynamicTyping: true, 
+      skipEmptyLines: true 
+    }).data;
 
-    // Crear map de centroides
-    const centroidMap = new Map();
-    centroids.forEach(c => {
-      if (c.barrio) {
-         centroidMap.set(c.barrio.trim().toUpperCase(), { lat: c.centroide_lat, lon: c.centroide_lon });
-      }
-    });
-
-    // Joinear dataset con centroides
-    const finalData = dataset.map(row => {
-      if (!row.barrio) return null;
-      const key = row.barrio.trim().toUpperCase();
-      const coords = centroidMap.get(key);
-      return {
+    // Filter valid rows with coordinates
+    const finalData = dataset
+      .filter(row => row.barrio && row.centroide_lat !== null && row.centroide_lon !== null)
+      .map(row => ({
         ...row,
-        lat: coords ? coords.lat : null,
-        lon: coords ? coords.lon : null
-      };
-    }).filter(row => row && row.lat !== null && row.lon !== null);
+        lat: row.centroide_lat,
+        lon: row.centroide_lon
+      }));
 
     return finalData;
   } catch (error) {
