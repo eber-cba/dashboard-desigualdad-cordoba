@@ -3,32 +3,32 @@ import { Map, Zap, Layers, BarChart3, Info, X } from 'lucide-react';
 
 const WelcomeModal = ({ onClose }) => {
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/80 backdrop-blur-md px-4 pointer-events-auto">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/80 backdrop-blur-md px-4 py-6 pointer-events-auto overflow-y-auto">
       
       {/* Caja Principal Glassmorphism */}
-      <div className="relative w-full max-w-2xl bg-slate-900/90 border border-slate-700 shadow-2xl shadow-sky-900/20 rounded-3xl p-6 md:p-10 overflow-hidden">
+      <div className="relative w-full max-w-2xl bg-slate-900/90 border border-slate-700 shadow-2xl shadow-sky-900/20 rounded-3xl p-6 md:p-10 my-auto">
         
         {/* Efecto de resplandor neón en el fondo de la caja */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-32 bg-sky-500/10 blur-[60px] pointer-events-none"></div>
 
-        {/* Botón Cerrar */}
+        {/* Botón Cerrar (X) */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors"
+          className="absolute top-3 right-3 md:top-4 md:right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors z-[20]"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
         {/* Header (Título) */}
-        <div className="flex items-center gap-4 mb-6 relative z-10">
-          <div className="p-3 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-2xl shadow-lg ring-1 ring-white/20">
-            <Map className="w-8 h-8 text-white" />
+        <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6 relative z-10">
+          <div className="p-2 md:p-3 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl md:rounded-2xl shadow-lg ring-1 ring-white/20">
+            <Map className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </div>
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-indigo-400 tracking-tight">
+            <h2 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-indigo-400 tracking-tight">
               Bienvenido al Dashboard
             </h2>
-            <p className="text-sky-400/80 text-sm font-semibold tracking-widest uppercase mt-1">
+            <p className="text-sky-400/80 text-[10px] md:text-sm font-semibold tracking-widest uppercase mt-0.5 md:mt-1">
               Desigualdad Urbana en Córdoba
             </p>
           </div>
