@@ -126,6 +126,7 @@ function App() {
         showProgress
         showSkipButton
         steps={steps}
+        disableScrolling={window.innerWidth < 768}
         styles={{
           options: {
             zIndex: 10000,
@@ -133,15 +134,27 @@ function App() {
             backgroundColor: '#0f172a',
             textColor: '#f1f5f9',
             arrowColor: '#0f172a',
+            width: window.innerWidth < 768 ? 'calc(100vw - 40px)' : 380,
+          },
+          tooltip: {
+            padding: '12px',
+            borderRadius: '16px',
           },
           tooltipContainer: {
             textAlign: 'left',
           },
           buttonNext: {
             borderRadius: '8px',
+            fontSize: '14px',
+            padding: '8px 16px',
           },
           buttonBack: {
-            color: '#94a3b8'
+            color: '#94a3b8',
+            marginRight: '10px',
+            fontSize: '14px',
+          },
+          buttonSkip: {
+            fontSize: '14px',
           }
         }}
       />
