@@ -82,7 +82,6 @@ function App() {
   };
 
   return (
-  return (
     <div className="relative h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-300 font-sans select-none">
       
       {/* Capa Base: Mapa interactivo (Ocupa 100% de la pantalla) */}

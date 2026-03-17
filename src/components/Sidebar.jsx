@@ -114,9 +114,7 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
             Ver Repo V19
           </a>
         </div>
-        <p className="text-[10px] text-slate-500 mt-3 font-medium tracking-wide">
-          © {new Date().getFullYear()} Creado por Eber Coronel.<br/>All rights reserved.
-        </div>
+        </p>
       </div>
     </div>
   );
