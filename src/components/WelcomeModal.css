@@ -1,0 +1,183 @@
+.welcome-modal-backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(2, 6, 23, 0.8) !important;
+    backdrop-filter: blur(8px);
+}
+
+.welcome-modal-paper {
+    position: relative !important;
+    width: 100%;
+    max-width: 672px; /* max-w-2xl */
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    background-color: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid var(--sidebar-border) !important;
+    box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.25) !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    margin: auto 16px;
+    color: var(--text-primary) !important;
+}
+
+@media (max-width: 600px) {
+    .welcome-modal-paper {
+        padding: 24px !important;
+        margin: auto 8px;
+    }
+}
+
+.welcome-modal-glow-effect {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 128px;
+    background: rgba(14, 165, 233, 0.1);
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+.welcome-modal-close-button {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    color: var(--text-secondary) !important;
+    transition: all 0.2s ease !important;
+}
+
+.welcome-modal-close-button:hover {
+    color: var(--text-primary) !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+.welcome-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.welcome-modal-header-icon-container {
+    padding: 12px;
+    background: linear-gradient(to bottom right, var(--accent-primary), var(--accent-secondary));
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.welcome-modal-header-icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.welcome-modal-title {
+    font-weight: 800 !important;
+    background: linear-gradient(to right, #60a5fa, #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.025em !important;
+}
+
+.welcome-modal-subtitle {
+    color: var(--text-highlight) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase;
+    font-size: 0.875rem !important;
+    margin-top: 4px !important;
+}
+
+.welcome-modal-body {
+    position: relative;
+    z-index: 10;
+}
+
+.welcome-modal-body p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.welcome-modal-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.welcome-modal-instructions-card {
+    background-color: rgba(2, 6, 23, 0.5) !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    margin-top: 24px !important;
+}
+
+.welcome-modal-instructions-title {
+    color: white !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+}
+
+.welcome-modal-instructions-title svg {
+    color: var(--text-highlight);
+}
+
+.welcome-modal-instructions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.welcome-modal-instructions-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-secondary);
+}
+
+.welcome-modal-instructions-list svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+.welcome-modal-instructions-list li:nth-child(1) svg { color: #818cf8; } /* indigo-400 */
+.welcome-modal-instructions-list li:nth-child(2) svg { color: #4ade80; } /* emerald-400 */
+.welcome-modal-instructions-list li:nth-child(3) svg { color: #facc15; } /* amber-400 */
+
+
+.welcome-modal-footer {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 10;
+}
+
+.welcome-modal-cta-button {
+    padding: 12px 32px !important;
+    background-color: #1e293b !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--sidebar-border) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.welcome-modal-cta-button:hover {
+    background-color: #334155 !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3) !important;
+}

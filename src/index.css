@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 @theme {
@@ -50,7 +51,6 @@ html, body, #root {
   scrollbar-width: thin;
   scrollbar-color: #334155 transparent;
 }
-*/
 
 @layer utilities {
   /* Utilidad para esconder scrollbar completamente pero permitir scroll */

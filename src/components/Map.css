@@ -1,0 +1,16 @@
+.map-container-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.map-circle-marker {
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.popup-content {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    padding: 8px;
+    color: #1e293b; /* slate-800 */
+}
