@@ -3,7 +3,7 @@ import { Map, Zap, School, Bus, Lightbulb, Shield, Users, Building, AlertTriangl
 
 const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
   return (
-    <div className="w-full h-auto max-h-[45vh] md:max-h-full md:h-full bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)] rounded-3xl text-slate-200 p-5 md:p-6 flex flex-col pointer-events-auto overflow-y-auto custom-scrollbar">
+    <div className="w-full h-auto max-h-[50vh] md:max-h-full md:h-full bg-slate-900/90 backdrop-blur-3xl border border-slate-700/50 shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)] rounded-t-3xl md:rounded-3xl text-slate-200 p-4 md:p-6 flex flex-col pointer-events-auto overflow-y-auto custom-scrollbar">
       
       {/* HEADER */}
       <div className="flex-shrink-0">

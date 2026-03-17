@@ -3,6 +3,7 @@ import { loadData } from './utils/DataLoader';
 import Sidebar from './components/Sidebar';
 import Map from './components/Map';
 import WelcomeModal from './components/WelcomeModal';
+import Legend from './components/Legend';
 import Joyride, { STATUS } from 'react-joyride';
 import { AlertTriangle, School, Bus, Lightbulb, Building, Map as MapIcon, Users, Activity, Shield } from 'lucide-react';
 
@@ -101,6 +102,11 @@ function App() {
           setActiveVariable={setActiveVariable} 
           variables={VARIABLES} 
         />
+      </div>
+
+      {/* Capa UI Flotante: Leyenda (Guía) */}
+      <div className={`absolute top-4 right-4 md:top-auto md:bottom-10 md:right-10 w-[240px] z-[1000] pointer-events-none transition-all duration-500 delay-300 ${showWelcome ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'}`}>
+        <Legend activeVariable={activeVariable} />
       </div>
 
       {/* Capa Modal de Bienvenida (Z-Index Máximo) */}
