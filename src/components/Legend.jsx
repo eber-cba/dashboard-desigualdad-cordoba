@@ -1,14 +1,20 @@
 import React from 'react';
 import { Info, Maximize2, Minimize2 } from 'lucide-react';
 
-const Legend = ({ activeVariable }) => {
+const Legend = ({ activeVariable, onCloseMobile }) => {
   return (
-    <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 shadow-[0_0_30px_-5px_rgba(14,165,233,0.3)] rounded-2xl p-4 text-slate-200 pointer-events-auto flex flex-col gap-4">
+    <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 shadow-[0_0_30px_-5px_rgba(14,165,233,0.3)] rounded-2xl p-4 text-slate-200 pointer-events-auto flex flex-col gap-3 group">
       
       {/* HEADER LEYENDA */}
-      <div className="flex items-center gap-2 border-b border-slate-700/50 pb-2">
-        <Info className="w-4 h-4 text-sky-400" />
-        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300">Guía de Visualización</h3>
+      <div className="flex items-center justify-between border-b border-slate-700/50 pb-2">
+        <div className="flex items-center gap-2">
+          <Info className="w-4 h-4 text-sky-400" />
+          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-300">Guía de Visualización</h3>
+        </div>
+        {/* Botón cerrar para mobile dentro del componente */}
+        <button onClick={onCloseMobile} className="md:hidden p-1 text-slate-500 hover:text-white">
+          <Minimize2 className="w-4 h-4" />
+        </button>
       </div>
 
       {/* RANGO DE COLORES */}

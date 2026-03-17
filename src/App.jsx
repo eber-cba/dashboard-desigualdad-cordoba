@@ -25,6 +25,7 @@ function App() {
   const [activeVariable, setActiveVariable] = useState(VARIABLES[0]);
   const [showWelcome, setShowWelcome] = useState(true); // Estado inicial en true
   const [runTour, setRunTour] = useState(false);
+  const [showLegend, setShowLegend] = useState(window.innerWidth > 768);
 
   // Configuración del Guided Tour (Pasos referenciando tutorial-classes)
   const [{ steps }] = useState({
@@ -105,9 +106,23 @@ function App() {
       </div>
 
       {/* Capa UI Flotante: Leyenda (Guía) */}
-      <div className={`absolute top-4 right-4 md:top-auto md:bottom-10 md:right-10 w-[240px] z-[1000] pointer-events-none transition-all duration-500 delay-300 ${showWelcome ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'}`}>
-        <Legend activeVariable={activeVariable} />
-      </div>
+      {!showWelcome && (
+        <div className={`absolute top-4 right-4 md:top-auto md:bottom-10 md:right-10 w-[240px] md:w-[280px] z-[1000] pointer-events-none transition-all duration-500`}>
+          {/* Botón para mostrar/ocultar leyenda en Mobile */}
+          <div className="md:hidden pointer-events-auto flex justify-end mb-2">
+            <button 
+              onClick={() => setShowLegend(!showLegend)}
+              className="p-3 bg-slate-900/90 border border-sky-500/30 rounded-full shadow-lg text-sky-400 backdrop-blur-md active:scale-95 transition-transform"
+            >
+              <Activity className="w-5 h-5" />
+            </button>
+          </div>
+          
+          <div className={`transition-all duration-500 ${showLegend ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none hidden md:block md:opacity-100 md:scale-100 md:pointer-events-auto'}`}>
+            <Legend activeVariable={activeVariable} onCloseMobile={() => setShowLegend(false)} />
+          </div>
+        </div>
+      )}
 
       {/* Capa Modal de Bienvenida (Z-Index Máximo) */}
       {showWelcome && (
