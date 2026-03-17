@@ -2,8 +2,32 @@ import React from 'react';
 import { Map, Zap, School, Bus, Lightbulb, Shield, Users, Building, AlertTriangle, Activity } from 'lucide-react';
 
 const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
+  const [isMobileOpen, setIsMobileOpen] = React.useState(false);
+
   return (
-    <div className="w-full h-auto max-h-[40vh] md:max-h-full md:h-full bg-slate-900/90 backdrop-blur-3xl border border-slate-700/50 shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)] rounded-t-3xl md:rounded-3xl text-slate-200 p-3 md:p-6 flex flex-col pointer-events-auto overflow-y-auto custom-scrollbar">
+    <div 
+      className={`
+        w-full md:w-full h-auto max-h-[70vh] md:max-h-full md:h-full 
+        bg-slate-900/95 backdrop-blur-3xl border-t md:border border-slate-700/50 
+        shadow-[0_-10px_40px_-10px_rgba(14,165,233,0.2)] md:shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)] 
+        rounded-t-[32px] md:rounded-[32px] text-slate-200 
+        px-4 pb-6 pt-2 md:p-6 flex flex-col pointer-events-auto 
+        transition-all duration-500 ease-in-out
+        ${isMobileOpen ? 'translate-y-0' : 'translate-y-[calc(100%-80px)] md:translate-y-0'}
+      `}
+    >
+      {/* MOBILE HANDLE */}
+      <div 
+        className="flex md:hidden flex-col items-center gap-1.5 pb-3 pt-1 cursor-pointer"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
+        <div className="w-12 h-1.5 bg-slate-700 rounded-full"></div>
+        <p className="text-[10px] font-bold text-sky-400/80 uppercase tracking-[0.2em]">
+          {isMobileOpen ? 'Cerrar Menú' : 'Explorar Métricas'}
+        </p>
+      </div>
+
+      <div className={`flex flex-col h-full overflow-hidden ${!isMobileOpen && 'md:opacity-100 opacity-0'} transition-opacity duration-300`}>
       
       {/* HEADER */}
       <div className="flex-shrink-0">
@@ -41,7 +65,7 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
         </h2>
         
         {/* VARIABLE SELECTOR */}
-        <div className="flex xl:flex-col gap-2 overflow-x-auto xl:overflow-visible pb-2 xl:pb-0 custom-scrollbar">
+        <div className="flex xl:flex-col gap-2 overflow-x-auto xl:overflow-y-auto pb-4 xl:pb-0 custom-scrollbar max-h-[30vh] md:max-h-[45vh]">
           {variables.map((v) => {
             const Icon = v.icon;
             const isActive = activeVariable.key === v.key;
@@ -92,9 +116,8 @@ const Sidebar = ({ activeVariable, setActiveVariable, variables }) => {
         </div>
         <p className="text-[10px] text-slate-500 mt-3 font-medium tracking-wide">
           © {new Date().getFullYear()} Creado por Eber Coronel.<br/>All rights reserved.
-        </p>
+        </div>
       </div>
-
     </div>
   );
 };

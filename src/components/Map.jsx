@@ -58,7 +58,7 @@ export default function Map({ data, activeVariable }) {
             <CircleMarker
               key={i}
               center={[barrio.lat, barrio.lon]}
-              radius={val === 0 ? 3 : 5 + perc * 18}
+              radius={val === 0 ? 2 : (window.innerWidth < 768 ? 4 : 5) + perc * (window.innerWidth < 768 ? 12 : 18)}
               fillColor={color}
               color={color}
               weight={1}

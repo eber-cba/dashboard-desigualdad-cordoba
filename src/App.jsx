@@ -82,7 +82,8 @@ function App() {
   };
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-slate-950 text-slate-300 font-sans">
+  return (
+    <div className="relative h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-300 font-sans select-none">
       
       {/* Capa Base: Mapa interactivo (Ocupa 100% de la pantalla) */}
       <main className="absolute inset-0 z-0">
@@ -96,8 +97,15 @@ function App() {
         )}
       </main>
 
-      {/* Capa UI Flotante: Sidebar Glassmorphism */}
-      <div className={`tour-step-2-dashboard absolute bottom-0 md:top-0 left-0 w-full md:w-[340px] h-auto md:h-full z-[1000] p-4 md:p-6 pointer-events-none flex flex-col justify-end md:justify-start transition-opacity duration-500 ${showWelcome ? 'opacity-0' : 'opacity-100'}`}>
+      {/* Capa UI Flotante: Sidebar (Bottom Sheet en Mobile) */}
+      <div 
+        className={`
+          absolute bottom-0 left-0 w-full md:top-0 md:left-0 md:w-[360px] md:h-full z-[1000] 
+          md:p-6 pointer-events-none flex flex-col justify-end md:justify-start 
+          transition-all duration-700 
+          ${showWelcome ? 'translate-y-full md:translate-y-0 md:-translate-x-full' : 'translate-y-0 md:translate-x-0'}
+        `}
+      >
         <Sidebar 
           activeVariable={activeVariable} 
           setActiveVariable={setActiveVariable} 
@@ -107,19 +115,23 @@ function App() {
 
       {/* Capa UI Flotante: Leyenda (Guía) */}
       {!showWelcome && (
-        <div className={`absolute top-4 right-4 md:top-auto md:bottom-10 md:right-10 w-[240px] md:w-[280px] z-[1000] pointer-events-none transition-all duration-500`}>
-          {/* Botón para mostrar/ocultar leyenda en Mobile */}
-          <div className="md:hidden pointer-events-auto flex justify-end mb-2">
+        <div className="absolute top-4 right-4 md:top-auto md:bottom-10 md:right-10 w-fit z-[1000] pointer-events-none">
+          <div className="flex flex-col items-end gap-3">
+            {/* Botón flotante para la Leyenda en Mobile */}
             <button 
               onClick={() => setShowLegend(!showLegend)}
-              className="p-3 bg-slate-900/90 border border-sky-500/30 rounded-full shadow-lg text-sky-400 backdrop-blur-md active:scale-95 transition-transform"
+              className="md:hidden pointer-events-auto flex items-center gap-2 px-4 py-2 bg-slate-900/90 border border-sky-500/30 rounded-full shadow-lg text-sky-400 backdrop-blur-md active:scale-95 transition-all text-xs font-bold uppercase tracking-wider"
             >
-              <Activity className="w-5 h-5" />
+              <Activity className="w-4 h-4" />
+              {showLegend ? 'Ocultar Guía' : 'Ver Guía'}
             </button>
-          </div>
-          
-          <div className={`transition-all duration-500 ${showLegend ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none hidden md:block md:opacity-100 md:scale-100 md:pointer-events-auto'}`}>
-            <Legend activeVariable={activeVariable} onCloseMobile={() => setShowLegend(false)} />
+            
+            <div className={`
+              w-[240px] md:w-[300px] transition-all duration-500 origin-top-right
+              ${showLegend ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none md:opacity-100 md:scale-100 md:pointer-events-auto'}
+            `}>
+              <Legend activeVariable={activeVariable} onCloseMobile={() => setShowLegend(false)} />
+            </div>
           </div>
         </div>
       )}
