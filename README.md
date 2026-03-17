@@ -5,6 +5,10 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)
 
+---
+### 🔗 Acceso Directo: [https://dashboard-desigualdad-cordoba.vercel.app](https://dashboard-desigualdad-cordoba.vercel.app)
+---
+
 **Plataforma interactiva geoespacial desarrollada para la visualización de métricas de desigualdad social e infraestructura en los 495 barrios de la ciudad de Córdoba Capital.**
 
 ---
